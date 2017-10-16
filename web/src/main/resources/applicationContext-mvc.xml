@@ -52,7 +52,7 @@
                     </list>
                 </property>
                 <property name="objectMapper">
-                    <bean class="com.mybatis.jackson2.PageListJsonMapper"/>
+                    <bean class="com.bbd.mybatis.jackson2.PageListJsonMapper"/>
                 </property>
             </bean>
         </mvc:message-converters>

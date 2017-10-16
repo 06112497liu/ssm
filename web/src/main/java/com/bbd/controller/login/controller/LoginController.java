@@ -2,7 +2,7 @@
  * BBD Service Inc
  * AllRight Reserved @2017
  */
-package com.bbd.controller.login.interceptor;
+package com.bbd.controller.login.controller;
 
 import com.bbd.controller.AbstractController;
 import io.swagger.annotations.Api;

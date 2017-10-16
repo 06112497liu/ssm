@@ -56,9 +56,9 @@
         </property>
     </bean>
     <bean id="offsetLimitInterceptor"
-          class="com.mybatis.pagination.OffsetLimitInterceptor">
+          class="com.bbd.mybatis.pagination.OffsetLimitInterceptor">
         <property name="dialectClass"
-                  value="com.mybatis.dialect.MySQLDialect"/>
+                  value="com.bbd.mybatis.dialect.MySQLDialect"/>
     </bean>
     <!-- mybatis配置-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
