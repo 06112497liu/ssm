@@ -1,30 +1,14 @@
 <beans
+        xmlns="http://www.springframework.org/schema/beans"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:mvc="http://www.springframework.org/schema/mvc"
-        xmlns="http://www.springframework.org/schema/beans"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-    <bean id="propertiesConfig"
-          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath:config.properties</value>
-            </list>
-        </property>
-        <!-- 设置编码格式 -->
-        <property name="fileEncoding" value="UTF-8"></property>
-    </bean>
-
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="properties" ref="propertiesConfig"/>
-        <property name="fileEncoding" value="utf-8"/>
-    </bean>
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- controller组件扫描 -->
     <context:component-scan base-package="com.bbd.controller.*"/>
@@ -80,6 +64,7 @@
     </bean>
 
     <!-- 接口注释类加载 -->
-    <bean class="com.bbd.controller.swagger.config.SwaggerConfig"></bean>
+    <bean class="com.bbd.controller.swagger.config.SwaggerConfig"/>
+
 
 </beans>
