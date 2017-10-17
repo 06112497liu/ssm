@@ -13,10 +13,6 @@
     <artifactId>common</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.bbd</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
 
         <!-- ######## spring  ########## -->
         <!-- 引入spring的核心包 -->
