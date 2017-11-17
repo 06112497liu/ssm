@@ -1,17 +1,38 @@
 <beans
-        xmlns="http://www.springframework.org/schema/beans"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
         xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns="http://www.springframework.org/schema/beans"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
+	    http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <!--<bean id="propertiesConfig"-->
+    <!--class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+    <!--<property name="locations">-->
+    <!--<list>-->
+    <!--<value>classpath:config.properties</value>-->
+    <!--<value>file:/var/reddata/web/opinion/config.properties</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--&lt;!&ndash; 设置编码格式 &ndash;&gt;-->
+    <!--<property name="fileEncoding" value="UTF-8"></property>-->
+    <!--</bean>-->
+
+    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+    <!--<property name="properties" ref="propertiesConfig"/>-->
+    <!--<property name="fileEncoding" value="utf-8"/>-->
+    <!--</bean>-->
+
     <!-- controller组件扫描 -->
-    <context:component-scan base-package="com.bbd.controller.*"/>
+    <!-- com.bbd.controller.* 是错的，不要*，定位包到包即可 -->
+    <context:component-scan base-package="com.bbd.controller"/>
 
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
@@ -36,7 +57,7 @@
                     </list>
                 </property>
                 <property name="objectMapper">
-                    <bean class="com.bbd.mybatis.jackson2.PageListJsonMapper"/>
+                    <bean class="com.mybatis.jackson2.PageListJsonMapper"/>
                 </property>
             </bean>
         </mvc:message-converters>
@@ -48,12 +69,32 @@
     <!-- 静态资源处理 -->
     <mvc:default-servlet-handler/>
 
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/api/**"/>-->
+    <!--<mvc:exclude-mapping path="/api/login/login"/>-->
+    <!--<bean class="com.bbd.filter.LoginInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
     <!-- 拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**/*.do"/>
-            <mvc:exclude-mapping path="/login/login.do"/>
-            <bean class="com.bbd.controller.login.interceptor.LoginInterceptor"/>
+            <mvc:mapping path="/**/*"/>
+            <mvc:exclude-mapping path="/api/login/login"/>
+            <mvc:exclude-mapping path="/**/*.html"/>
+            <mvc:exclude-mapping path="/**/fonts/*"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+            <mvc:exclude-mapping path="/**/swagger-resources"/>
+            <mvc:exclude-mapping path="/**/swagger-resources/configuration/security"/>
+            <mvc:exclude-mapping path="/**/v2/*"/>
+            <mvc:exclude-mapping path="/**/swagger-resources/configuration/ui"/>
+            <bean class="com.bbd.filter.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -64,7 +105,8 @@
     </bean>
 
     <!-- 接口注释类加载 -->
-    <bean class="com.bbd.controller.swagger.config.SwaggerConfig"/>
+    <bean class="com.bbd.swagger.SwaggerConfig"></bean>
 
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>
