@@ -24,7 +24,7 @@ import com.bbd.domain.OpinionEventWordsExample;
  * @author daijinlong 
  * @version $Id: EventService.java, v 0.1 2017年11月10日 下午2:06:26 daijinlong Exp $ 
  */
-@Component
+//@Component
 public class EventListener {
 
     private static final Logger logger = LoggerFactory.getLogger(EventListener.class);

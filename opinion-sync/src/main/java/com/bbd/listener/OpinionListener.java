@@ -48,7 +48,7 @@ import java.util.concurrent.ExecutionException;
  * @author tjwang
  * @version $Id: OpinionListener.java, v 0.1 2017/11/8 0008 11:38 tjwang Exp $
  */
-@Component
+//@Component
 public class OpinionListener {
 
     private static final Logger logger = LoggerFactory.getLogger(OpinionListener.class);
