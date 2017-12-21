@@ -18,6 +18,8 @@ import org.elasticsearch.action.update.UpdateRequestBuilder;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.get.GetResult;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.script.Script;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
@@ -184,5 +186,19 @@ public class EsQueryServiceTest extends BaseServiceTest {
         List<String> idList = Arrays.stream(hit).map(SearchHit::getId).collect(Collectors.toList());
         System.out.println(idList);
         list = idList;
+    }
+
+    @Test
+    public void testConficlt() {
+        TransportClient client = esUtil.getClient();
+        SearchResponse resp = client.prepareSearch("bank")
+                .setQuery(QueryBuilders.termQuery("account_number", 0))
+                .setSize(1).execute().actionGet();
+        SearchHit[] hits = resp.getHits().getHits();
+        for (SearchHit hit : hits) {
+            long version = hit.getVersion();
+            System.out.println(version);
+        }
+
     }
 }

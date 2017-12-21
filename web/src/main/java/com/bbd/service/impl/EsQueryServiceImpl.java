@@ -232,7 +232,6 @@ public class EsQueryServiceImpl implements EsQueryService {
     /**
      * 获取事件数量折线统计图 - 图表跟踪分析
      * @param eventId
-     * @param sourceType
      * @return
      */
     @Override

@@ -58,7 +58,6 @@ public interface EsQueryService {
     /**
      * 获取事件媒体信息量分布折线统计图 
      * @param eventId
-     * @param sourceType
      * @return
      */
     List<KeyValueVO> getEventMediaStatisticBySource(Long eventId);
