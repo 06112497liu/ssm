@@ -134,6 +134,11 @@
             <artifactId>transport</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.bbossgroups.plugins</groupId>
+            <artifactId>bboss-elasticsearch-rest</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

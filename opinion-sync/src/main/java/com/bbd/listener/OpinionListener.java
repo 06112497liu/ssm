@@ -48,7 +48,7 @@ import java.util.concurrent.ExecutionException;
  * @author tjwang
  * @version $Id: OpinionListener.java, v 0.1 2017/11/8 0008 11:38 tjwang Exp $
  */
-//@Component
+@Component
 public class OpinionListener {
 
     private static final Logger logger = LoggerFactory.getLogger(OpinionListener.class);
@@ -59,7 +59,7 @@ public class OpinionListener {
     @Autowired
     private WarnSettingDao      warnSettingDao;
 
-    @KafkaListener(topics = "bbd_opinion", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "test", containerFactory = "kafkaListenerContainerFactory")
     public void Listen(List<ConsumerRecord<String, String>> records) {
         processRecords(records);
     }
